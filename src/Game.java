@@ -16,7 +16,7 @@ public class Game {
 		// generate answer for sudoku game
 		final Node[][] ANSWER = answer();
 		if(ANSWER == null) {
-			System.out.println("this game does not has solution :(");
+			System.out.println("this game does not has any solution :(");
 			return;
 		}
 
@@ -35,17 +35,17 @@ public class Game {
 				case 1: {
 					int x = 0, y = 0;
 					while(true) {
-						System.out.print("enter x corrdinate: ");
+						System.out.print("enter x coordinate: ");
 						x = scanner.nextInt();
 						
-						System.out.print("enter y corrdinate: ");
+						System.out.print("enter y coordinate: ");
 						y = scanner.nextInt();							
 
 						if(x <= 0){
-							System.out.println("cordinate must be greater than 0!\nLet enter again:\n");
+							System.out.println("coordinate must be greater than 0!\nLet enter again:\n");
 							continue;
 						} else if(y <= 0) {
-							System.out.println("cordinate must be greater than 0!\nLet enter again:\n");
+							System.out.println("coordinate must be greater than 0!\nLet enter again:\n");
 							continue;
 						}
 						
@@ -69,7 +69,7 @@ public class Game {
 				}
 				
 				case 2: {
-					System.out.println("square corrdinates has wrong value: ");
+					System.out.println("square coordinates has wrong value: ");
 					int fl1 = 0;
 					int fl2 = 0;
 					for(int i = 0; i < GRID_SIZE; i++) {
@@ -80,7 +80,7 @@ public class Game {
 								continue;
 							}
 
-							// if the square value is not equals to answer at the same corrdinates then display this corrdinates and set value of this square to default (0)
+							// if the square value is not equals to answer at the same coordinates then display this coordinates and set value of this square to default (0)
 							if(currentPlay[i][j].getValue() != ANSWER[i][j].getValue()) {
 								System.out.println("(" + (i + 1) + ", " + (j + 1) + ")");
 								currentPlay[i][j].setValue(0);
@@ -164,7 +164,7 @@ public class Game {
 	}
 
 	private static boolean sudokuSolver(Node[][] board) {
-		// itetare thought all square in board
+		// iterate thought all square in board
 		for(int row = 0; row < GRID_SIZE; row++) {
 			for(int column = 0; column < GRID_SIZE; column++) {
 		
@@ -174,16 +174,16 @@ public class Game {
 						if(isValidPlace(board, number, row, column)) {
 							board[row][column].setValue(number);
 		
-							// if all the affter square has it's own value then turn true
+							// if all the after square has it's own value then turn true
 							if(sudokuSolver(board)) {
 								return true;
-							} else {	// if the square affter this square have not any value tobe valided then set this value to default (0)
+							} else {	// if the square after this square have not any value to be validated then set this value to default (0)
 								board[row][column].setValue(0);
 							}
 						}
 					}
 		
-					// if this square have not any value tobe valided then return false
+					// if this square have not any value to be validated then return false
 					return false;
 				}
 			}
@@ -194,7 +194,7 @@ public class Game {
 	private Node[][] answer() {
 		Node[][] answer = new Node[GRID_SIZE][GRID_SIZE];
 		
-		// coppy value from board to answer
+		// copy value from board to answer
 		for(int i = 0; i < GRID_SIZE; i++)
 			for(int j = 0; j < GRID_SIZE; j++)
 				answer[i][j] = new Node(i,j,board[i][j].getValue());
